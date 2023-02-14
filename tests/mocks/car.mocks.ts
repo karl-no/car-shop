@@ -25,10 +25,13 @@ const allCars = [
     model: 'Tempra',
     year: 1995,
     color: 'Black',
+    status: false,
     buyValue: 39,
     doorsQty: 2,
     seatsQty: 5,
   },
 ];
 
-export default { oneCar, allCars };
+const invalidId = '12aiMaInhA';
+
+export default { oneCar, allCars, invalidId };
