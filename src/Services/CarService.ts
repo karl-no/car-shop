@@ -19,20 +19,20 @@ export default class CarService {
 
   public async getAllCars() {
     const carODM = new CarODM();
-    const allCars = await carODM.findAllCars();
+    const allCars = await carODM.findAll();
     const cars = allCars.map((car) => this.createCarDomain(car));
     return cars;
   }
 
   public async getCarById(id: string) {
     const carODM = new CarODM();
-    const car = await carODM.findCarById(id);
+    const car = await carODM.findById(id);
     return this.createCarDomain(car);
   }
 
   public async updateCar(id: string, car: ICar): Promise<IHttpResponse<Car | string>> {
     const carODM = new CarODM();
-    const carUpdate = await carODM.updateCar(id, car);
+    const carUpdate = await carODM.update(id, car);
 
     if (carUpdate === null) throw new Error('Car not found');
 

@@ -17,18 +17,18 @@ export default class MotorcycleService {
     return this.createMotorcycleDomain(newMotorcycle);
   }
 
-  // public async getAllCars() {
-  //   const carODM = new CarODM();
-  //   const allCars = await carODM.findAllCars();
-  //   const cars = allCars.map((car) => this.createCarDomain(car));
-  //   return cars;
-  // }
+  public async getAllMotorcycles() {
+    const motorcycleODM = new MotorcycleODM();
+    const allMotorcycles = await motorcycleODM.findAll();
+    const motorcycles = allMotorcycles.map((moto) => this.createMotorcycleDomain(moto));
+    return motorcycles;
+  }
 
-  // public async getCarById(id: string) {
-  //   const carODM = new CarODM();
-  //   const car = await carODM.findCarById(id);
-  //   return this.createCarDomain(car);
-  // }
+  public async getMotorcycleById(id: string) {
+    const motorcycleODM = new MotorcycleODM();
+    const motorcycle = await motorcycleODM.findById(id);
+    return this.createMotorcycleDomain(motorcycle);
+  }
 
   // public async updateCar(id: string, car: ICar): Promise<IHttpResponse<Car | string>> {
   //   const carODM = new CarODM();

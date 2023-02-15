@@ -15,15 +15,15 @@ export default class AbstractODM<T> {
     return this.model.create({ ...vehicle });
   }
 
-  public async findAllCars(): Promise<T[]> {
+  public async findAll(): Promise<T[]> {
     return this.model.find();
   }
 
-  public async findCarById(id: string): Promise<T | null> {
+  public async findById(id: string): Promise<T | null> {
     return this.model.findById(id);
   }
 
-  public async updateCar(id: string, vehicle: Partial<T>): Promise<T | null> {
+  public async update(id: string, vehicle: Partial<T>): Promise<T | null> {
     await this.model.updateOne(
       { id },
       { ...vehicle },
