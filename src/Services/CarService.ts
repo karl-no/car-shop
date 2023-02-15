@@ -1,5 +1,6 @@
 import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
+import IHttpResponse from '../Interfaces/IHttpResponse';
 import CarODM from '../Models/CarODM';
 
 export default class CarService {
@@ -27,5 +28,19 @@ export default class CarService {
     const carODM = new CarODM();
     const car = await carODM.findCarById(id);
     return this.createCarDomain(car);
+  }
+
+  public async updateCar(id: string, car: ICar): Promise<IHttpResponse<Car | string>> {
+    const carODM = new CarODM();
+    const carUpdate = await carODM.updateCar(id, car);
+
+    if (carUpdate === null) throw new Error('Car not found');
+
+    const newCar = this.createCarDomain(carUpdate);
+
+    return {
+      statusCode: 200,
+      body: newCar as Car,
+    };
   }
 }
