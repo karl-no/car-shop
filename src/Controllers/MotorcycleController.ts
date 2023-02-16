@@ -55,21 +55,21 @@ export default class MotorcycleController {
     }
   }
 
-  // public async updateCar() {
-  //   const { id } = this.req.params;
+  public async updateMotorcycle() {
+    const { id } = this.req.params;
 
-  //   const { statusCode, body } = await this.service.updateCar(id, this.req.body);
-  //   try {
-  //     if (!isValidObjectId(id)) {
-  //       return this.res.status(422).json({ message: 'Invalid mongo id' });
-  //     }
-  //     const car = await this.service.getCarById(id);
-  //     if (!car) {
-  //       return this.res.status(404).json({ message: 'Car not found' });
-  //     }
-  //     return this.res.status(statusCode).json(body);
-  //   } catch (error) {
-  //     this.next(error);
-  //   }
-  // }
+    const { statusCode, body } = await this.service.updateMotorcycle(id, this.req.body);
+    try {
+      if (!isValidObjectId(id)) {
+        return this.res.status(422).json({ message: 'Invalid mongo id' });
+      }
+      const motorcycle = await this.service.getMotorcycleById(id);
+      if (!motorcycle) {
+        return this.res.status(404).json({ message: 'Motorcycle not found' });
+      }
+      return this.res.status(statusCode).json(body);
+    } catch (error) {
+      this.next(error);
+    }
+  }
 }

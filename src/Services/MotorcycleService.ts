@@ -1,6 +1,6 @@
 import Motorcycle from '../Domains/Motorcycle';
 import IMotorcycle from '../Interfaces/IMotorcycle';
-// import IHttpResponse from '../Interfaces/IHttpResponse';
+import IHttpResponse from '../Interfaces/IHttpResponse';
 import MotorcycleODM from '../Models/MotorcycleODM';
 
 export default class MotorcycleService {
@@ -30,17 +30,20 @@ export default class MotorcycleService {
     return this.createMotorcycleDomain(motorcycle);
   }
 
-  // public async updateCar(id: string, car: ICar): Promise<IHttpResponse<Car | string>> {
-  //   const carODM = new CarODM();
-  //   const carUpdate = await carODM.updateCar(id, car);
+  public async updateMotorcycle(
+    id: string,
+    motorcycle: IMotorcycle,
+  ): Promise<IHttpResponse<Motorcycle | string>> {
+    const motorcycleODM = new MotorcycleODM();
+    const motorcycleUpdate = await motorcycleODM.update(id, motorcycle);
 
-  //   if (carUpdate === null) throw new Error('Car not found');
+    if (motorcycleUpdate === null) throw new Error('Motorcycle not found');
 
-  //   const newCar = this.createCarDomain(carUpdate);
+    const newMotorcycle = this.createMotorcycleDomain(motorcycleUpdate);
 
-  //   return {
-  //     statusCode: 200,
-  //     body: newCar as Car,
-  //   };
-  // }
+    return {
+      statusCode: 200,
+      body: newMotorcycle as Motorcycle,
+    };
+  }
 }
