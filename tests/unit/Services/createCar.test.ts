@@ -13,4 +13,13 @@ describe('Deveria cria um carro', function () {
 
     expect(result).to.be.deep.equal(carMock.oneCar);
   });
+  
+  it('Não deve criar um carro', async function () {
+    sinon.stub(Model, 'create').resolves(null);
+
+    const service = new CarService();
+    const result = await service.createCar(carMock.oneCar);
+
+    expect(result).to.be.deep.equal(null);
+  });
 });
